@@ -1,11 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
+import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text style={styles.testStyle}>스파르타 강희</Text>
-      <StatusBar style="auto" />
+      <View style={styles.subContainerOne}></View>
+      <View style={styles.subContainerTwo}></View>
     </View>
   );
 }
@@ -14,10 +15,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
-  testStyle: {
-    color: 'gray'
+  subContainerOne: {
+    flex:1,
+    backgroundColor:"yellow"
+  },
+  subContainerTwo: {
+    flex:1,
+    backgroundColor:"green"
   }
 });
