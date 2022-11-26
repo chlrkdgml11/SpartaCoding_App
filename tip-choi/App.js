@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, Image, ScrollView, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, Image, ScrollView, TouchableOpacity, Alert, TimePickerAndroid } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import data from './data.json'
 
 const main = 'https://storage.googleapis.com/sparta-image.appspot.com/lecture/main.png'
 const contentImage1 = 'https://firebasestorage.googleapis.com/v0/b/sparta-image.appspot.com/o/lecture%2Fpizza.png?alt=media&token=1a099927-d818-45d4-b48a-7906fd0d2ad3'
@@ -9,6 +10,8 @@ export default function App() {
   const buttonAlert = () => {
     Alert.alert('버튼입니다.')
   }
+
+  let tip = data.tip
 
   return (
     <ScrollView style={styles.container}>
@@ -43,33 +46,25 @@ export default function App() {
       </ScrollView>
 
 
-      <View style={styles.bottom}>
-        <Image
-          source={{ uri:contentImage1}}
-          style={styles.image2}
-        />
-
-        <View style={styles.imageFont}>
-          <Text style={styles.imageTitle}>먹다 남은 피자를 촉촉하게!</Text>
-          <Text numberOfLines={3} style={styles.imageContent}>먹다 남은 피자는 수분이 날라가기 때문에 처음부터 맛있게 먹을 수 없는데요. 이럴 경우 그릇에 물을 받아 전자렌지에 돌리면 맛있게 먹을 수 있습니다.</Text>
-          <Text style={styles.contentDate}>2022.11.26</Text>
-        </View>
+      <View style={styles.contentContainer}>
+        {
+          tip.map((content, i) => {
+            return (
+              <View style={styles.bottom} key={i}>
+                <Image
+                  source={{ uri: content.image }}
+                  style={styles.image2}
+                />
+                <View style={styles.imageFont}>
+                  <Text style={styles.imageTitle}>{i + 1}.{content.title}</Text>
+                  <Text numberOfLines={3} style={styles.imageContent}>{content.desc}</Text>
+                  <Text style={styles.contentDate}>{content.date}</Text>
+                </View>
+              </View>
+            )
+          })
+        }
       </View>
-
-      <View style={styles.bottom}>
-        <Image
-          source={{ uri:contentImage1}}
-          style={styles.image2}
-        />
-
-        <View style={styles.imageFont}>
-          <Text style={styles.imageTitle}>먹다 남은 피자를 촉촉하게!</Text>
-          <Text numberOfLines={3} style={styles.imageContent}>먹다 남은 피자는 수분이 날라가기 때문에 처음부터 맛있게 먹을 수 없는데요. 이럴 경우 그릇에 물을 받아 전자렌지에 돌리면 맛있게 먹을 수 있습니다.</Text>
-          <Text style={styles.contentDate}>2022.11.26</Text>
-        </View>
-      </View>
-
-
     </ScrollView>
   );
 }
@@ -103,14 +98,14 @@ const styles = StyleSheet.create({
   button1_1: {
     width: 110,
     alignItems: "center",
-    backgroundColor: "orange",
+    backgroundColor: "#fdc453",
     borderRadius: 20,
     justifyContent: "center",
   },
   button2_1: {
     width: 110,
     alignItems: "center",
-    backgroundColor: "red",
+    backgroundColor: "#fe8d6f",
     borderRadius: 20,
     marginLeft: 7,
     justifyContent: "center"
@@ -118,7 +113,7 @@ const styles = StyleSheet.create({
   button3_1: {
     width: 110,
     alignItems: "center",
-    backgroundColor: "blue",
+    backgroundColor: "#9adbc5",
     borderRadius: 20,
     marginLeft: 7,
     justifyContent: "center"
@@ -126,7 +121,7 @@ const styles = StyleSheet.create({
   button4_1: {
     width: 110,
     alignItems: "center",
-    backgroundColor: "pink",
+    backgroundColor: "#f886a8",
     borderRadius: 20,
     marginLeft: 7,
     justifyContent: "center"
@@ -136,18 +131,22 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: 20,
-    marginBottom: 10
   },
   imageFont: {
+    flex: 2,
     width: 200,
     flex: 2
   },
-  bottom: {
-    flexDirection: "row",
+  contentContainer: {
     marginTop: 10,
     marginLeft: 10,
+  },
+  bottom: {
+    flexDirection: "row",
     borderBottomWidth: 0.5,
-    borderBottomColor:'black',
+    borderBottomColor: 'gray',
+    paddingBottom: 10,
+    paddingTop: 10,
   },
   imageTitle: {
     fontSize: 19,
