@@ -56,6 +56,18 @@ export default function App() {
         </View>
       </View>
 
+      <View style={styles.bottom}>
+        <Image
+          source={{ uri:contentImage1}}
+          style={styles.image2}
+        />
+
+        <View style={styles.imageFont}>
+          <Text style={styles.imageTitle}>먹다 남은 피자를 촉촉하게!</Text>
+          <Text numberOfLines={3} style={styles.imageContent}>먹다 남은 피자는 수분이 날라가기 때문에 처음부터 맛있게 먹을 수 없는데요. 이럴 경우 그릇에 물을 받아 전자렌지에 돌리면 맛있게 먹을 수 있습니다.</Text>
+          <Text style={styles.contentDate}>2022.11.26</Text>
+        </View>
+      </View>
 
 
     </ScrollView>
@@ -124,6 +136,7 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: 20,
+    marginBottom: 10
   },
   imageFont: {
     width: 200,
