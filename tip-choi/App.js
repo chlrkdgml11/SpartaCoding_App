@@ -12,6 +12,8 @@ export default function App() {
   }
 
   let tip = data.tip
+  let todayWeather = 10 + 17
+  let todayCondition = "흐림"
 
   return (
     <ScrollView style={styles.container}>
@@ -20,7 +22,7 @@ export default function App() {
 
       <Text style={styles.title}>나만의 꿀팁</Text>
 
-
+      <Text style={styles.weather}>오늘의 날씨 : {todayWeather}ºC {todayCondition}</Text>
       <Image
         source={{ uri: main }}
         style={styles.image1}
@@ -56,7 +58,7 @@ export default function App() {
                   style={styles.image2}
                 />
                 <View style={styles.imageFont}>
-                  <Text style={styles.imageTitle}>{i + 1}.{content.title}</Text>
+                  <Text numberOfLines={1} style={styles.imageTitle}>{i + 1}. {content.title}</Text>
                   <Text numberOfLines={3} style={styles.imageContent}>{content.desc}</Text>
                   <Text style={styles.contentDate}>{content.date}</Text>
                 </View>
@@ -79,6 +81,10 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginLeft: 10
   },
+  weather: {
+    alignSelf:"flex-end",
+    marginRight: 10,
+  },  
   image1: {
     width: "95%",
     height: 200,
