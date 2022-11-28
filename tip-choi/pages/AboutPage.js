@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   image: {
     height: 150,
     width: 150,
-    marginTop: 50,
+    marginTop: 40,
     borderRadius: 30,
     alignSelf: 'center'
   },
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   },
   bottomButton: {
     backgroundColor: 'orange',
-    marginTop: 15,
+    marginTop: 30,
     width: 170,
     height: 50,
     alignSelf: 'center',
@@ -96,6 +96,6 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 17, 
     fontWeight: "700",
-    alignSelf: 'center'
+    alignSelf: 'center',
   }
 });
