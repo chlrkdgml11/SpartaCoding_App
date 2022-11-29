@@ -1,170 +1,165 @@
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, Image, ScrollView, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import data from '../data.json'
 
 const main = 'https://storage.googleapis.com/sparta-image.appspot.com/lecture/main.png'
+import data from '../data.json';
+import Card from '../components/Card';
 
 export default function MainPage() {
-  const buttonAlert = () => {
-    Alert.alert('버튼입니다.')
-  }
-
-  let tip = data.tip
-  let todayWeather = 10 + 17
+  let tip = data.tip;
+  let todayWeather = 10 + 17;
   let todayCondition = "흐림"
-
+  //return 구문 밖에서는 슬래시 두개 방식으로 주석
   return (
+    /*
+      return 구문 안에서는 {슬래시 + * 방식으로 주석
+    */
     <ScrollView style={styles.container}>
-      <SafeAreaView style={styles.container}></SafeAreaView>
-      <StatusBar style='dark'></StatusBar>
-
+      <StatusBar style="dark" />
       <Text style={styles.title}>나만의 꿀팁</Text>
-
-      <Text style={styles.weather}>오늘의 날씨 : {todayWeather}ºC {todayCondition}</Text>
-      <Image
-        source={{ uri: main }}
-        style={styles.image1}
-      />
-
-
-      <ScrollView horizontal={true} style={styles.scroll}>
-        <TouchableOpacity style={styles.button1_1} onPress={buttonAlert}>
-          <Text style={styles.buttonText}>생활</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.button2_1} onPress={buttonAlert}>
-          <Text style={styles.buttonText}>재테크</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.button3_1} onPress={buttonAlert}>
-          <Text style={styles.buttonText}>반려견</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.button4_1} onPress={buttonAlert}>
-          <Text style={styles.buttonText}>꿀팁 찜</Text>
-        </TouchableOpacity>
+      <Text style={styles.weather}>오늘의 날씨: {todayWeather + '°C ' + todayCondition} </Text>
+      <Image style={styles.mainImage} source={{uri:main}}/>
+      <ScrollView style={styles.middleContainer} horizontal indicatorStyle={"white"}>
+        <TouchableOpacity style={styles.middleButton01}><Text style={styles.middleButtonText}>생활</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.middleButton02}><Text style={styles.middleButtonText}>재테크</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.middleButton03}><Text style={styles.middleButtonText}>반려견</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.middleButton04}><Text style={styles.middleButtonText}>꿀팁 찜</Text></TouchableOpacity>
       </ScrollView>
-
-
-      <View style={styles.contentContainer}>
-        {
-          tip.map((content, i) => {
-            return (
-              <View style={styles.bottom} key={i}>
-                <Image
-                  source={{ uri: content.image }}
-                  style={styles.image2}
-                />
-                <View style={styles.imageFont}>
-                  <Text numberOfLines={1} style={styles.imageTitle}>{i + 1}. {content.title}</Text>
-                  <Text numberOfLines={3} style={styles.imageContent}>{content.desc}</Text>
-                  <Text style={styles.contentDate}>{content.date}</Text>
-                </View>
-              </View>
-            )
+      <View style={styles.cardContainer}>
+        {/* 하나의 카드 영역을 나타내는 View */}
+        { 
+          tip.map((content,i) => {
+            // return (<View style={styles.card} key={i}>
+            //   <Image style={styles.cardImage} source={{uri:content.image}}/>
+            //   <View style={styles.cardText}>
+            //     <Text style={styles.cardTitle} numberOfLines={1}>{content.title}</Text>
+            //     <Text style={styles.cardDesc} numberOfLines={3}>{content.desc}</Text>
+            //     <Text style={styles.cardDate}>{content.date}</Text>
+            //   </View>
+            // </View>)
+            return (<Card content={content} key={i}/>)
           })
-        }
+         }
+        
       </View>
+   
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    //앱의 배경 색
+    backgroundColor: '#fff',
   },
   title: {
+    //폰트 사이즈
     fontSize: 20,
-    fontWeight: "700",
-    marginTop: 10,
-    marginLeft: 10
+    //폰트 두께
+    fontWeight: '700',
+    //위 공간으로 부터 이격
+    marginTop:50,
+    //왼쪽 공간으로 부터 이격
+    marginLeft:20
   },
-  weather: {
+  weather:{
     alignSelf:"flex-end",
-    marginRight: 10,
-  },  
-  image1: {
-    width: "95%",
-    height: 200,
-    marginTop: 10,
-    borderRadius: 20,
-    alignSelf: "center"
+    paddingRight:20
   },
-  scroll: {
-    marginLeft: 10,
-    marginTop: 10,
-    height: 60,
+  mainImage: {
+    //컨텐츠의 넓이 값
+    width:'90%',
+    //컨텐츠의 높이 값
+    height:200,
+    //컨텐츠의 모서리 구부리기
+    borderRadius:10,
+    marginTop:20,
+    //컨텐츠 자체가 앱에서 어떤 곳에 위치시킬지 결정(정렬기능)
+    //각 속성의 값들은 공식문서에 고대로~ 나와 있음
+    alignSelf:"center"
   },
-  buttonText: {
-    color: "white",
-    fontSize: 20,
+  middleContainer:{
+    marginTop:20,
+    marginLeft:10,
+    height:60
   },
-  button1_1: {
-    width: 110,
-    alignItems: "center",
-    backgroundColor: "#fdc453",
-    borderRadius: 20,
-    justifyContent: "center",
+  middleButton01: {
+    width:100,
+    height:50,
+    padding:15,
+    backgroundColor:"#fdc453",
+    borderColor:"deeppink",
+    borderRadius:15,
+    margin:7
   },
-  button2_1: {
-    width: 110,
-    alignItems: "center",
-    backgroundColor: "#fe8d6f",
-    borderRadius: 20,
-    marginLeft: 7,
-    justifyContent: "center"
+  middleButton02: {
+    width:100,
+    height:50,
+    padding:15,
+    backgroundColor:"#fe8d6f",
+    borderRadius:15,
+    margin:7
   },
-  button3_1: {
-    width: 110,
-    alignItems: "center",
-    backgroundColor: "#9adbc5",
-    borderRadius: 20,
-    marginLeft: 7,
-    justifyContent: "center"
+  middleButton03: {
+    width:100,
+    height:50,
+    padding:15,
+    backgroundColor:"#9adbc5",
+    borderRadius:15,
+    margin:7
   },
-  button4_1: {
-    width: 110,
-    alignItems: "center",
-    backgroundColor: "#f886a8",
-    borderRadius: 20,
-    marginLeft: 7,
-    justifyContent: "center"
+  middleButtonText: {
+    color:"#fff",
+    fontWeight:"700",
+    //텍스트의 현재 위치에서의 정렬 
+    textAlign:"center"
   },
-  image2: {
-    flex: 1,
-    width: 100,
-    height: 100,
-    borderRadius: 20,
+  middleButton04: {
+    width:100,
+    height:50,
+    padding:15,
+    backgroundColor:"#f886a8",
+    borderRadius:15,
+    margin:7
   },
-  imageFont: {
-    flex: 2,
-    width: 200,
-    flex: 2
+  cardContainer: {
+    marginTop:10,
+    marginLeft:10
   },
-  contentContainer: {
-    marginTop: 10,
-    marginLeft: 10,
+  card:{
+    flex:1,
+    //컨텐츠들을 가로로 나열
+    //세로로 나열은 column <- 디폴트 값임 
+    flexDirection:"row",
+    margin:10,
+    borderBottomWidth:0.5,
+    borderBottomColor:"#eee",
+    paddingBottom:10
+
   },
-  bottom: {
-    flexDirection: "row",
-    borderBottomWidth: 0.5,
-    borderBottomColor: 'gray',
-    paddingBottom: 10,
-    paddingTop: 10,
+  cardImage: {
+    flex:1,
+    width:100,
+    height:100,
+    borderRadius:10,
   },
-  imageTitle: {
-    fontSize: 19,
-    fontWeight: "bold",
-    marginLeft: 2
+  cardText: {
+    flex:2,
+    flexDirection:"column",
+    marginLeft:10,
   },
-  imageContent: {
-    fontSize: 15,
-    numberOfLines: 3,
-    marginLeft: 3
+  cardTitle: {
+    fontSize:20,
+    fontWeight:"700"
   },
-  contentDate: {
-    color: 'gray',
-    marginLeft: 3
-  }
+  cardDesc: {
+    fontSize:15
+  },
+  cardDate: {
+    fontSize:10,
+    color:"#A6A6A6",
+  },
+
+
 });
