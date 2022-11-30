@@ -1,10 +1,15 @@
 import React from 'react';
-import MainPage from './pages/MainPage'
-import AboutPage from './pages/AboutPage'
-import DetailPage from './pages/DetailPage'
+import { NavigationContainer } from '@react-navigation/native';
+import StackNavigator from './navigation/StackNavigator'
+import { StatusBar } from 'expo-status-bar';
 
 export default function App() {
-  return <MainPage/>
-  // return <AboutPage/>
-  // return <DetailPage/>
+  console.disableYellowBOx = true;
+
+  return (
+    <NavigationContainer>
+      <StatusBar style='black'></StatusBar>
+      <StackNavigator></StackNavigator>
+    </NavigationContainer>
+  )
 }
