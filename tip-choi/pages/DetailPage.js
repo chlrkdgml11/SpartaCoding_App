@@ -27,7 +27,7 @@ export default function DetailPage({ navigation, route }) {
             //StackNavigator에서 작성했던 옵션을 다시 수정할 수도 있습니다. 
             headerStyle: {
                 backgroundColor: '#000',
-                shadowColor: "#000",
+                shadowColor: "#000"
             },
             headerTintColor: "#fff",
         })

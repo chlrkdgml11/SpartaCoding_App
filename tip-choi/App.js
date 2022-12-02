@@ -4,7 +4,7 @@ import StackNavigator from './navigation/StackNavigator'
 import { StatusBar } from 'expo-status-bar';
 
 export default function App() {
-  console.disableYellowBOx = true;
+  console.disableYellowBox = true;
 
   return (
     <NavigationContainer>
