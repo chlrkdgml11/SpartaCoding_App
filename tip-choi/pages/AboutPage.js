@@ -1,29 +1,47 @@
 import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView, Image, TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import { useEffect, useState } from 'react';
+import * as Linking from 'expo-linking';
 
 const main = 'https://storage.googleapis.com/sparta-image.appspot.com/lecture/about.png'
 
-export default function AboutPage() {
+export default function AboutPage({navigation, route}) {
+
+  const link = () => {
+    Linking.openURL("https://ckanghee.tistory.com/")
+  }
+
+  useEffect(() => {
+    navigation.setOptions({
+      title: '소개 페이지',
+      headerStyle: {
+        backgroundColor: '#191970',
+        shadowColor: "#191970"
+      },
+      headerTintColor: "#fff",
+    })
+  }, [])
+
+
   return (
     <View style={styles.container}>
-      <SafeAreaView style={styles.statusBarBackground}></SafeAreaView>
-      <StatusBar style='auto'></StatusBar>
+      <StatusBar style='light'></StatusBar>
 
       <Text style={styles.title}>HI! 스파르타코딩 앱개발 반에 오신것을 환영합니다</Text>
 
       <View style={styles.bottom}>
         <Image
-        source={{uri:main}}
-        style={styles.image}
-        resizeMode={"cover"}
+          source={{ uri: main }}
+          style={styles.image}
+          resizeMode={"cover"}
         />
 
         <Text style={styles.bottomContent1}>많은 내용을 간결하게 담아내려 노력했습니다!</Text>
 
         <Text style={styles.bottomContent2}>꼭 완주 하셔서 꼭 여러분것으로 만들어가시길 바랍니다</Text>
 
-        <TouchableOpacity style={styles.bottomButton}>
+        <TouchableOpacity style={styles.bottomButton} onPress={() => link()}>
           <Text style={styles.bottomButtonText}>여러분의 인스타계정</Text>
         </TouchableOpacity>
       </View>
@@ -48,7 +66,7 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     marginTop: 30,
     marginLeft: 20,
-    marginRight: 20
+    marginRight: 20,
   },
   bottom: {
     width: 320,
@@ -72,7 +90,7 @@ const styles = StyleSheet.create({
     marginLeft: 30,
     marginRight: 30,
     fontWeight: "800",
-    textAlign:"center"
+    textAlign: "center"
   },
   bottomContent2: {
     color: 'black',
@@ -81,7 +99,7 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 20,
     fontWeight: "600",
-    textAlign:"center"
+    textAlign: "center"
   },
   bottomButton: {
     backgroundColor: 'orange',
@@ -94,7 +112,7 @@ const styles = StyleSheet.create({
   },
   bottomButtonText: {
     color: 'white',
-    fontSize: 17, 
+    fontSize: 17,
     fontWeight: "700",
     alignSelf: 'center',
   }

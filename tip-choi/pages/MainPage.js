@@ -6,6 +6,7 @@ const main = 'https://storage.googleapis.com/sparta-image.appspot.com/lecture/ma
 import data from '../data.json';
 import Card from '../components/Card';
 import Loading from '../components/Loading';
+
 export default function MainPage({ navigation, route }) {
   //useState 사용법
   //[state,setState] 에서 state는 이 컴포넌트에서 관리될 상태 데이터를 담고 있는 변수
@@ -31,7 +32,7 @@ export default function MainPage({ navigation, route }) {
       setState(data.tip)
       setCateState(data.tip)
       setReady(false)
-    }, 1000)
+    }, 100)
 
 
   }, [])
@@ -40,10 +41,15 @@ export default function MainPage({ navigation, route }) {
     if (cate == "전체보기") {
       //전체보기면 원래 꿀팁 데이터를 담고 있는 상태값으로 다시 초기화
       setCateState(state)
+    } else if (cate == "꿀팁 찜") {
+      return (
+        navigation.navigate('LikePage')
+      )
     } else {
       setCateState(state.filter((d) => {
         return d.category == cate
-      }))
+      }
+      ))
     }
   }
 
@@ -60,6 +66,11 @@ export default function MainPage({ navigation, route }) {
       <StatusBar style="dakr"></StatusBar>
       {/* <Text style={styles.title}>나만의 꿀팁</Text> */}
       <Text style={styles.weather}>오늘의 날씨: {todayWeather + '°C ' + todayCondition} </Text>
+      <TouchableOpacity style={styles.aboutButton} onPress={() => {
+        navigation.navigate('AboutPage')
+      }}>
+        <Text style={styles.aboutButtonText}>소개 페이지</Text>
+      </TouchableOpacity>
       <Image style={styles.mainImage} source={{ uri: main }} />
       <ScrollView style={styles.middleContainer} horizontal indicatorStyle={"white"}>
         <TouchableOpacity style={styles.middleButtonAll} onPress={() => { category('전체보기') }}><Text style={styles.middleButtonTextAll}>전체보기</Text></TouchableOpacity>
@@ -99,6 +110,25 @@ const styles = StyleSheet.create({
   weather: {
     alignSelf: "flex-end",
     paddingRight: 20
+  },
+  aboutButton: {
+    width: 100,
+    height: 35,
+    backgroundColor: 'pink',
+    alignSelf: 'flex-end',
+    borderRadius: 10,
+    marginTop: 10,
+    marginRight: 20,
+  },
+  aboutButtonText: {
+    fontSize: 17,
+    color: 'white',
+    height: 40,
+    width: 100,
+    textAlign: 'center',
+    borderRadius: 10,
+    fontWeight: '900',
+    marginTop: 8,
   },
   mainImage: {
     //컨텐츠의 넓이 값
