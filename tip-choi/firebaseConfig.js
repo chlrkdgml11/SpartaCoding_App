@@ -12,6 +12,7 @@ import "firebase/compat/storage";
 const firebaseConfig = {
     apiKey: "AIzaSyAcqNWvzLCKpBB8KpwBEJCPDqGRE9o86oc",
     authDomain: "tip-choi.firebaseapp.com",
+    databaseURL: "https://tip-choi-default-rtdb.asia-southeast1.firebasedatabase.app/",
     projectId: "tip-choi",
     storageBucket: "tip-choi.appspot.com",
     messagingSenderId: "174787457041",
