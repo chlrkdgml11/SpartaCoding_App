@@ -25,9 +25,10 @@ export default function LikePage({ navigation, route }) {
         navigation.setOptions({
             title: "꿀팁 찜",
             headerStyle: {
-                backgroundColor: '#000',
-                shadowColor: "#000",
-                height: 50
+                backgroundColor: "gray",
+                borderBottomColor: "gray",
+                shadowColor: "gray",
+                height:50
             },
             headerTintColor: "#fff",
         })

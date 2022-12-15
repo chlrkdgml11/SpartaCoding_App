@@ -16,8 +16,10 @@ export default function AboutPage({navigation, route}) {
     navigation.setOptions({
       title: '소개 페이지',
       headerStyle: {
-        backgroundColor: '#191970',
-        shadowColor: "#191970"
+        backgroundColor: "gray",
+        borderBottomColor: "gray",
+        shadowColor: "gray",
+        height:50
       },
       headerTintColor: "#fff",
     })

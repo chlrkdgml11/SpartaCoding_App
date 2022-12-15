@@ -22,9 +22,9 @@ const StackNavigator = () =>{
         <Stack.Navigator
             screenOptions={{
                 headerStyle: {
-                    backgroundColor: "white",
-                    borderBottomColor: "white",
-                    shadowColor: "white",
+                    backgroundColor: "gray",
+                    borderBottomColor: "gray",
+                    shadowColor: "gray",
                     height:50
                 },
                 headerTitleAlign:'left',
