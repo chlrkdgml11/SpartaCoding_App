@@ -34,7 +34,7 @@ export default function DetailPage({ navigation, route }) {
                 shadowColor: "gray",
                 height:50
             },
-            headerTintColor: "#fff",
+            headerTintColor: "black",
         })
 
         const { idx } = route.params;
