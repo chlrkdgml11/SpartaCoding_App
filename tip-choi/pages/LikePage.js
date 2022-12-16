@@ -12,12 +12,19 @@ export default function LikePage({ navigation, route }) {
     const [tip, setTip] = useState([])
 
     const [ready, setReady] = useState(true)
-
+    
     useEffect(() => {
-
+        navigation.setOptions({
+          title: "꿀팁 찜",
+          headerStyle: {
+            backgroundColor: "gray",
+            borderBottomColor: "gray",
+            shadowColor: "gray",
+            height: 50
+          }
+        })
         getLike();
-
-    }, [])
+      }, [])
 
     const getLike = async () => {
         let userUniqueId;
@@ -40,17 +47,14 @@ export default function LikePage({ navigation, route }) {
                 setTip(tip)
                 setReady(false)
             }
-
-
         })
-
     }
-    // ready ? <Loading /> : 
+
     return (
         <ScrollView style={styles.container}>
             {
                 tip.map((content, i) => {
-                    return (<LikeCard content={content} key={i} navigation={navigation} />)
+                    return (<LikeCard content={content} key={i} navigation={navigation} tip={tip} setTip={setTip}/>)
                 })
             }
         </ScrollView>

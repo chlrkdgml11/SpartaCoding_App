@@ -59,7 +59,7 @@ export default function DetailPage({ navigation, route }) {
             userUniqueId = await Application.androidId
         }
         firebase_db.ref('/like/' + userUniqueId + '/' + tip.idx).set(tip, function (error) {
-            console.log(error)
+            // console.log(error)
             Alert.alert("찜 완료!")
         });
     }
