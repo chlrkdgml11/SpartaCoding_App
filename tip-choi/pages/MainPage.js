@@ -73,15 +73,10 @@ export default function MainPage({ navigation, route }) {
         `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
       );
 
-      // console.log(result)
-
       // 현재 위치의 온도
       const temp = result.data.main.temp;
       //현재 위치의 날씨 정도
       const condition = result.data.weather[0].main
-
-      // console.log(temp)
-      // console.log(condition)
 
       setWeather({
         temp, condition

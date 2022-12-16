@@ -20,8 +20,6 @@ export default function DetailPage({ navigation, route }) {
     })
 
     useEffect(() => {
-        // console.log(route)
-
         //Card.js에서 navigation.navigate 함수를 쓸때 두번째 인자로 content를 넘겨줬죠?
         //content는 딕셔너리 그 자체였으므로 route.params에 고대~로 남겨옵니다.
         //즉, route.params 는 content죠!
@@ -60,7 +58,6 @@ export default function DetailPage({ navigation, route }) {
         } else {
             userUniqueId = await Application.androidId
         }
-        console.log(userUniqueId)
         firebase_db.ref('/like/' + userUniqueId + '/' + tip.idx).set(tip, function (error) {
             console.log(error)
             Alert.alert("찜 완료!")

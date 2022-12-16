@@ -7,6 +7,7 @@ export default function LikeCard({ content, navigation }) {
 
   useEffect(() => {
     navigation.setOptions({
+      title: "꿀팁 찜",
       headerStyle: {
         backgroundColor: "gray",
         borderBottomColor: "gray",
@@ -22,7 +23,6 @@ export default function LikeCard({ content, navigation }) {
 
   }
 
-  console.log(content)
   return (
     <TouchableOpacity style={styles.card} onPress={() => {
       navigation.navigate('DetailPage', content)
