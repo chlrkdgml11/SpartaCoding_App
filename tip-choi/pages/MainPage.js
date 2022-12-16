@@ -42,9 +42,9 @@ export default function MainPage({ navigation, route }) {
         getLocation()
         setReady(false)
       })
-      // navigation.setOptions({
-      //   title: '나만의 꿀팁'
-      // })
+      navigation.setOptions({
+        title: '나만의 꿀팁'
+      })
       // getLocation()
       // setState(data.tip)
       // setCateState(data.tip)
